@@ -26,19 +26,15 @@ import com.tw.apistackbase.Employee;
 @RequestMapping("/companies")
 public class CompanyController {
 	//获得公司列表
+	List<Employee> employees = new ArrayList<Employee>();
 	List<Company> companys = new ArrayList<Company>();
-	//Company[] companys = new Company[2];
 	@GetMapping(path = "/")
 	@ResponseStatus(HttpStatus.OK)
 	public List<Company> getCompanys(){
-		Employee[] employees = new Employee[2];
-		employees[0] = new Employee(1,"alibaba1",20,"male",6000);
-		employees[1] = new Employee(2,"alibaba2",30,"male",8000);
+		employees.add(new Employee(1,"alibaba1",20,"male",6000));
+		employees.add(new Employee(2,"alibaba2",30,"male",8000));
 		companys.add(new Company("001","alibaba",200,employees));
 		companys.add(new Company("002","baidu",300,employees));
-		
-//		companys[0] = new Company("001","alibaba",200,employees);
-//		companys[1] = new Company("002","baidu",300,employees);
 		return companys;
 	}
 	
@@ -61,8 +57,8 @@ public class CompanyController {
 	
 	//获得某个公司下所有的员工
 	@GetMapping(path = "/{companyId}/employees")
-	public ResponseEntity<Employee[]> getCompanyEmployees(@PathVariable String companyId){
-		Employee[] employees = null;
+	public ResponseEntity<List<Employee>> getCompanyEmployees(@PathVariable String companyId){
+		List<Employee> employees = null;
 		for(int i = 0;i < companys.size();i++) {
 			if(companys.get(i).getCompanyId().equals(companyId)) {
 				employees = companys.get(i).getEmployee();
@@ -71,7 +67,7 @@ public class CompanyController {
 			}
 			
 		}
-		return new ResponseEntity<Employee[]>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
 		
 	}
 		

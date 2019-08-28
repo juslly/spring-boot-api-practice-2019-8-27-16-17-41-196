@@ -1,20 +1,23 @@
 package com.tw.apistackbase;
 
+import java.util.List;
+
 public class Company {
 	
 	private String companyId;
 	private String companyName;
 	private int employeeNumber;
-	private Employee[] employee;
+	private List<Employee> employee;
 	
-	public Company(String companyId, String companyName, int employeeNumber, Employee[] employee) {
 	
+	
+	public Company(String companyId, String companyName, int employeeNumber, List<Employee> employee) {
+		super();
 		this.companyId = companyId;
 		this.companyName = companyName;
 		this.employeeNumber = employeeNumber;
 		this.employee = employee;
 	}
-	
 	public String getCompanyId() {
 		return companyId;
 	}
@@ -33,12 +36,15 @@ public class Company {
 	public void setEmployeeNumber(int employeeNumber) {
 		this.employeeNumber = employeeNumber;
 	}
-	public Employee[] getEmployee() {
+
+	public List<Employee> getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee[] employee) {
+
+	public void setEmployee(List<Employee> employee) {
 		this.employee = employee;
 	}
+	
 	
 	
 
